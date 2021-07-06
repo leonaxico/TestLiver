@@ -10,6 +10,7 @@ import Foundation
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
+    @IBOutlet weak var HistoricLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
     var products:[[String:Any]] = []
     private var productsView:UICollectionView?
@@ -18,7 +19,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.search(keyword: "nintendo")    }
+        self.search(keyword: "nintendo")
+        loadStored()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -35,9 +38,11 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     @IBAction func performSearch(_ sender: Any) {
         let searchParam=self.searchField.text ?? "Xbox"
-        search(keyword: searchParam)
         storeProcedure(search: searchParam)
+        loadStored()
+        search(keyword: searchParam)
         productsView?.reloadData()
+        
     }
     
     
@@ -86,7 +91,20 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         }
         lastSearches.insert(search.uppercased())
         print(lastSearches.count)
-        userDefaults.setValue(lastSearches, forKey: "last")
+        let searches:[String]=lastSearches.sorted()
+        userDefaults.setValue(searches, forKey: "last")
+    }
+    
+    func loadStored(){
+        if (userDefaults.object(forKey: "last") != nil) {
+            var textDisplay = ""
+            let history:[String] = (userDefaults.object(forKey: "last") as! [String])
+            for hist in history{
+                textDisplay = textDisplay + "\(hist) "
+            }
+            HistoricLabel.text = textDisplay
+            lastSearches = Set(history)
+        }
     }
 }
 
