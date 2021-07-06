@@ -15,7 +15,7 @@
 		0745578326936593002278B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0745578126936593002278B8 /* LaunchScreen.storyboard */; };
 		0745578E26936593002278B8 /* LiverSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745578D26936593002278B8 /* LiverSearchTests.swift */; };
 		0745579926936594002278B8 /* LiverSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745579826936594002278B8 /* LiverSearchUITests.swift */; };
-		074557A926939337002278B8 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074557A826939337002278B8 /* ProductCellView.swift */; };
+		07E8AF4F2693D85C00ECC8E1 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8AF4E2693D85C00ECC8E1 /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		0745579426936593002278B8 /* LiverSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiverSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0745579826936594002278B8 /* LiverSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiverSearchUITests.swift; sourceTree = "<group>"; };
 		0745579A26936594002278B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		074557A826939337002278B8 /* ProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellView.swift; sourceTree = "<group>"; };
+		07E8AF4E2693D85C00ECC8E1 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +105,10 @@
 				0745577826936592002278B8 /* SceneDelegate.swift */,
 				0745577A26936592002278B8 /* ViewController.swift */,
 				0745577C26936592002278B8 /* Main.storyboard */,
-				074557A826939337002278B8 /* ProductCellView.swift */,
 				0745577F26936593002278B8 /* Assets.xcassets */,
 				0745578126936593002278B8 /* LaunchScreen.storyboard */,
 				0745578426936593002278B8 /* Info.plist */,
+				07E8AF4E2693D85C00ECC8E1 /* ProductCell.swift */,
 			);
 			path = LiverSearch;
 			sourceTree = "<group>";
@@ -262,9 +262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0745577B26936592002278B8 /* ViewController.swift in Sources */,
+				07E8AF4F2693D85C00ECC8E1 /* ProductCell.swift in Sources */,
 				0745577726936592002278B8 /* AppDelegate.swift in Sources */,
 				0745577926936592002278B8 /* SceneDelegate.swift in Sources */,
-				074557A926939337002278B8 /* ProductCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
