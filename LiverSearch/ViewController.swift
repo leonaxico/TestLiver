@@ -6,20 +6,23 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var searchField: UITextField!
     var products:[[String:Any]] = []
     private var productsView:UICollectionView?
-     
+    let userDefaults = UserDefaults.standard
+    var lastSearches = Set<String>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.search(keyword: "nintendo")
-    }
+        self.search(keyword: "nintendo")    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -33,6 +36,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     @IBAction func performSearch(_ sender: Any) {
         let searchParam=self.searchField.text ?? "Xbox"
         search(keyword: searchParam)
+        storeProcedure(search: searchParam)
         productsView?.reloadData()
     }
     
@@ -47,8 +51,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 let results:[String:Any]=json["plpResults"] as! [String:Any]
                 self.products=results["records"] as! [[String:Any]]
-                print(self.products[0]["productDisplayName"] ?? "not foud")
-                DispatchQueue.main.async {
+                DispatchQueue.main.async{
                     self.loadProductsView()
                 }
             } catch {
@@ -56,7 +59,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             }
         })
         task.resume()
-        session.finishTasksAndInvalidate()
     }
     
     func loadProductsView() {
@@ -78,5 +80,13 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         productsView.frame = CGRect(x: 0, y: 0 , width: self.view.frame.width, height: self.view.frame.height * 0.8)
     }
     
+    func storeProcedure(search:String){
+        if lastSearches.count >= 10 {
+            lastSearches.removeFirst()
+        }
+        lastSearches.insert(search.uppercased())
+        print(lastSearches.count)
+        userDefaults.setValue(lastSearches, forKey: "last")
+    }
 }
 
